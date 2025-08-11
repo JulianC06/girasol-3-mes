@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girasol Estático</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFDD57, #FF5F3A); /* Fondo llamativo */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+            flex-direction: column; /* Añadido para alinear el texto y el girasol */
+        }
+
+        .container {
+            position: relative;
+            margin-top: 50px; /* Sube el girasol para hacer espacio */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Girasol */
+        .girasol {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        /* Pétalos amarillos */
+        .petalo {
+            position: absolute;
+            margin-left: 75px;
+            margin-top: 20px;
+            width: 50px;
+            height: 150px;
+            background-color: #FFEA00;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .petalo:nth-child(1) {
+            transform: rotate(0deg) translateY(-70px);
+        }
+        .petalo:nth-child(2) {
+            transform: rotate(45deg) translateY(-70px);
+        }
+        .petalo:nth-child(3) {
+            transform: rotate(90deg) translateY(-70px);
+        }
+        .petalo:nth-child(4) {
+            transform: rotate(135deg) translateY(-70px);
+        }
+        .petalo:nth-child(5) {
+            transform: rotate(180deg) translateY(-70px);
+        }
+        .petalo:nth-child(6) {
+            transform: rotate(225deg) translateY(-70px);
+        }
+        .petalo:nth-child(7) {
+            transform: rotate(270deg) translateY(-70px);
+        }
+        .petalo:nth-child(8) {
+            transform: rotate(315deg) translateY(-70px);
+        }
+
+        /* Centro del girasol */
+        .centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background-color: #6A4F30;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tallo del girasol, detrás del girasol */
+        .tallo {
+            position: absolute;
+            top: 70px;
+            bottom: -100px;
+            left: 50%;
+            width: 20px;
+            height: 300px;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            transform: translateX(-50%);
+            z-index: -1; /* Asegura que el tallo esté detrás */
+        }
+
+        .te-amo {
+            position: absolute;
+            font-size: 2rem;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease-in-out;
+        }
+        .te-amo img {
+            width: 150px;  /* Ajusta el tamaño de la imagen */
+            height: 150px;
+            margin-right: 10px;  /* Espacio entre la imagen y el texto */
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Feliz 3 meses juntos mi amor!</h1>
+    <p>No ha sido uno de los mejores días, tampoco ha sido uno de mis mejores momentos, tampoco ha sido muchas cosas más. Pero aquí estoy
+        para ti, pensando en ti, haciendo cosas para ti con la mejor de mis energías, con el entusiasmo que debí tener todo el día, pero 
+        debes saber que en todo momento eres la energía que necesito, el centro de mi mundo, la chica mas especial y mi novia preciosa.
+        Esto es solo un mensaje para regalarte este pequeño girasol y distraerte un rato, es tuyo y lo hice con mucho cariño. Quisiera decirte
+        mas palabras bonitas, pero todo se va resumir en TE AMO, pero especialmente en TE EXTRAÑO, te extraño muchisimo princesa :( ... Además creo que ya
+        has visto la foto que pasa por la pantalla, es otro TE AMO, miranos, somos felices y quiero que sigamos siendo felices, compartiendo más momentos
+        juntos que haga que tengamos mas fotos juntos. Te ves tan linda y yo tan atravesado ...Si haces clic en la foto, tal vez veas más!!
+    </p>
+    <div class="container">
+        <div class="girasol">
+            <!-- Pétalos -->
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <!-- Centro del girasol -->
+            <div class="centro"></div>
+
+            <!-- Tallo -->
+            <div class="tallo"></div>
+        </div>
+    </div>
+        <!-- Contenedor para el "Te Amo" -->
+        <div class="te-amo" id="te-amo">
+            <img src="ft-1.jpeg" alt="Imagen Corazón" /> 
+            <p></p>
+            <span>Te Amo</span>
+        </div>
+    
+        <script>
+            // Seleccionamos el div con el texto "Te Amo"
+            const teAmoElement = document.getElementById("te-amo");
+    
+            // Variables de movimiento
+            let posX = 50;
+            let posY = 50;
+            let velX = 2;  // Velocidad de movimiento en X
+            let velY = 2;  // Velocidad de movimiento en Y
+    
+            // Función de movimiento
+            function moveTeAmo() {
+                // Calculamos la nueva posición
+                posX += velX;
+                posY += velY;
+    
+                // Si toca el límite de la pantalla, cambia la dirección
+                if (posX + teAmoElement.offsetWidth > window.innerWidth || posX < 0) {
+                    velX = -velX;
+                }
+                if (posY + teAmoElement.offsetHeight > window.innerHeight || posY < 0) {
+                    velY = -velY;
+                }
+    
+                // Aplicamos la nueva posición
+                teAmoElement.style.left = posX + "px";
+                teAmoElement.style.top = posY + "px";
+    
+                // Llamamos a la función nuevamente para que se mueva
+                requestAnimationFrame(moveTeAmo);
+            }
+    
+            // Llamamos a la función para comenzar el movimiento
+            moveTeAmo();
+    
+            // Agregamos la función de redirección al hacer clic
+            teAmoElement.addEventListener("click", function() {
+                window.location.href = "pagina2.html";
+            });
+        </script>
+</body>
+</html>

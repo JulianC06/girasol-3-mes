@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol Radiante</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFDD57, #FF5F3A); /* Fondo llamativo */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .container {
+            position: relative;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Sol */
+        .sol {
+            position: relative;
+            margin-left: 100px;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            background-color: #FFEA00;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 223, 87, 0.7);
+            animation: rotarSol 10s linear infinite;
+        }
+
+        /* Rayos del sol */
+        .rayo {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background-color: #FFDD57;
+            top: 41%;
+            left: 45%;
+            transform-origin: center;
+            border-radius: 10px;
+        }
+
+        .rayo:nth-child(1) { transform: rotate(0deg) translateX(115px); }
+        .rayo:nth-child(2) { transform: rotate(45deg) translateX(115px); }
+        .rayo:nth-child(3) { transform: rotate(90deg) translateX(115px); }
+        .rayo:nth-child(4) { transform: rotate(135deg) translateX(115px); }
+        .rayo:nth-child(5) { transform: rotate(180deg) translateX(115px); }
+        .rayo:nth-child(6) { transform: rotate(225deg) translateX(115px); }
+        .rayo:nth-child(7) { transform: rotate(270deg) translateX(115px); }
+        .rayo:nth-child(8) { transform: rotate(315deg) translateX(115px); }
+
+        /* Animación de rotación de los rayos */
+        @keyframes rotarSol {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .te-amo {
+            position: absolute;
+            font-size: 2rem;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease-in-out;
+        }
+        .te-amo img {
+            width: 70px;  /* Ajusta el tamaño de la imagen */
+            height: 70px;
+            margin-right: 10px;  /* Espacio entre la imagen y el texto */
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Hola mi solecito!</h1>
+    <p> Este es mi mejor intento de sol, pero al menos se mueve :D...Aquí no estan las mejores fotos nuestras,
+        pero estamos los dos y eso es lo que quiero representar, además no tenemos que posar siempre bien o vernos
+        desde nuestro mejor angulo, solo estamos ahí, juntitos cerquita y bonitos o como me explicas que hasta modo
+        pandita te veo tan preciosa!!!!!!!...eres mi vida completa así que por eso eres mi solecito que ilumina la vida. 
+        Te adoro y ojalá la vida nos de tanto tiempo para hacer tantas cosas para ti....Te adoro.
+    </p>
+    <div class="container">
+        <div class="sol">
+            <!-- Rayos del sol -->
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+            <div class="rayo"></div>
+        </div>
+    </div>
+
+    <div class="te-amo" id="te-amo-1">
+        <img src="ft-3.jpeg" alt="Imagen Corazón" /> 
+        <p></p>
+        <span>Te adoro</span>
+    </div>
+
+    <div class="te-amo" id="te-amo-2">
+        <img src="ft-4.jpeg" alt="Imagen Corazón" /> 
+        <p></p>
+        <span>Te quiero</span>
+    </div>
+
+    <div class="te-amo" id="te-amo-3">
+        <img src="ft-5.jpeg" alt="Imagen Corazón" /> 
+        <p></p>
+        <span>Te extraño :D</span>
+    </div>
+
+    <div class="te-amo" id="te-amo-4">
+        <img src="ft-6.jpeg" alt="Imagen Corazón" /> 
+        <p></p>
+        <span>Me fascinas</span>
+    </div>
+
+    <div class="te-amo" id="te-amo-5">
+        <img src="ft-2.jpeg" alt="Imagen Corazón" /> 
+        <p></p>
+        <span>Cosota rica</span>
+    </div>
+
+    <script>
+
+        const images = [
+            { element: document.getElementById('te-amo-1'), posX: 100, posY: 50, velX: 2, velY: 2 },
+            { element: document.getElementById('te-amo-2'), posX: 150, posY: 100, velX: -2, velY: 2 },
+            { element: document.getElementById('te-amo-3'), posX: 200, posY: 150, velX: 2, velY: -2 },
+            { element: document.getElementById('te-amo-4'), posX: 250, posY: 200, velX: -2, velY: -2 },
+            { element: document.getElementById('te-amo-5'), posX: 50, posY: 250, velX: 2, velY: 2 }
+        ];
+
+        // Función para mover las imágenes
+        function moveImages() {
+            images.forEach(image => {
+                // Actualizamos las posiciones
+                image.posX += image.velX;
+                image.posY += image.velY;
+
+                // Rebote al llegar al borde de la pantalla
+                if (image.posX + image.element.offsetWidth > window.innerWidth || image.posX < 0) {
+                    image.velX = -image.velX;
+                }
+                if (image.posY + image.element.offsetHeight > window.innerHeight || image.posY < 0) {
+                    image.velY = -image.velY;
+                }
+
+                // Aplicamos la nueva posición
+                image.element.style.left = image.posX + 'px';
+                image.element.style.top = image.posY + 'px';
+            });
+
+            // Llamamos nuevamente para hacer el movimiento continuo
+            requestAnimationFrame(moveImages);
+        }
+
+        // Iniciar el movimiento de las imágenes
+        moveImages();
+    </script>
+</body>
+</html>
